@@ -30,9 +30,8 @@ echo "nginx['ssl_port']=443" >> /etc/opscode/chef-server.rb
 echo "nginx['server_name']=\"chef-server\"" >> /etc/opscode/chef-server.rb
 ```
 
-The command below with set-up our Chef Server using the Chef engine. This will take a few minutes.
+The command below with set-up our Chef Server and start all its services using the Chef engine. This will take a few minutes.
 ```
-#to start all the services
 chef-server-ctl reconfigure
 ```
 
@@ -74,16 +73,11 @@ The command below will setup the Chef tool, *Knife*, authentication keys
 cd /etc/chef/ && tar -cvzf knife_admin_key.tar.gz admin.pem my_org-validator.pem 
 ```
 
+Finally we restart Nginx and print the status of the Chef Server
 ```
-echo -e "\nRestart Nginx..." 
 chef-server-ctl restart nginx 
 chef-server-ctl status 
-touch /root/chef_configured 
 ```
-
-
-- When you create your user account, note your username, password, and location of your RSA private key.
-- When you create your organization, note the name of the organization you choose.
 
 
 # Troubleshooting:
