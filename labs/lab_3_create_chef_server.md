@@ -2,7 +2,7 @@
 # Create Chef Server
 
 ```
-docker run --privileged -ti -p 443:443 -p 8000:8000 -p 80:8080 ubuntu:14.04 bash 	
+sudo docker run --privileged -ti -p 443:443 -p 8000:8000 -p 80:8080 --name server ubuntu:14.04 bash 	
 ```
 
 ```
