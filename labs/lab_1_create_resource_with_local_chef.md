@@ -33,7 +33,8 @@ Now with vim or nano, create a file called /root/chef-repo/hello.rb with the fol
 
 ```
 file '/tmp/motd' do 
-  content 'hello world' 
+  content 'hello world
+  ' 
 end 
 ```
 Finally, run the following command:
