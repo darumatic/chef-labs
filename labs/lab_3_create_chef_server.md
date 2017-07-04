@@ -63,8 +63,7 @@ chef-server-ctl reconfigure
 We need to setup some Nginx error messages 
 ```
 echo "error Please use https instead of http" > /var/opt/opscode/nginx/html/500.json
-sed -i "s,/503.json;,/503.json;\n    error_page 497 =503 /500.json;,g" /var/opt/opscode/nginx/etc/chef_https_lb.conf 
-sed -i '$i\    location /knife_admin_key.tar.gz {\n      default_type application/zip;\n      alias /etc/chef/knife_admin_key.tar.gz;\n    }' /var/opt/opscode/nginx/etc/chef_https_lb.conf 
+curl https://raw.githubusercontent.com/darumatic/chef-labs/master/labs/cfg/chef_https_lb.conf > /var/opt/opscode/nginx/etc/chef_https_lb.conf 
 ```
 
 
