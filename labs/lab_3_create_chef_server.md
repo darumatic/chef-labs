@@ -101,7 +101,7 @@ sudo docker commit chef_wk1 chef_wk:2
 Leave this container running for now. You will use it in another lab. If you need to restart it, you can always run: ```chef-server-ctl start```
 
 
-
+---
 
 
 # Troubleshooting:
