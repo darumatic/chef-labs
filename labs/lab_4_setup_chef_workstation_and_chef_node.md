@@ -8,7 +8,7 @@ You need to have the Chef Server from Lab 3 working and the Docker image from la
 
 From the host, you need to get the ip of the Chef Server machine. In order to do it run the following command:
 ```
-sudo docker inspect cserver |grep IPAdd
+sudo docker inspect chef-server |grep IPAdd
 ```
 Take note of the ip address, you will use it later. 
 
@@ -22,12 +22,12 @@ sudo docker run -ti --name chef_wk2 -h chef_wk chef_wk:2 bash
 Now modify the /etc/hosts file and add the Chef Server ip. This will enable to use the name of the host instead of the ip in the following commands. Assuming the ip is 172.17.0.2, the line you need to add looks like this:
 
 ```
-172.17.0.2 cserver
+172.17.0.2 chef-server
 ```
 
 You can verify the host is working by running this command:
 ```
-ping cserver
+ping chef-server
 ```
 
 ##Installing *knife* credentials
@@ -38,7 +38,7 @@ Now that we have connectivity from the chef workstation to the chef server, we w
 cd
 mkdir -p learn-chef/.chef
 cd learn-chef/.chef
-curl -Ok https://cserver:443/knife_admin_key.tar.gz  
+curl -Ok https://chef-server:443/knife_admin_key.tar.gz  
 tar xvzf knife_admin_key.tar.gz 
 ```
 
@@ -52,7 +52,7 @@ node_name                 "admin"
 client_key                "#{current_dir}/admin.pem" 
 validation_client_name   "my_org-validator" 
 validation_key           '#{current_dir}/my_org-validator.pem' 
-chef_server_url           "https://cserver/organizations/my_org" 
+chef_server_url           "https://chef-server/organizations/my_org" 
 cookbook_path             ["#{current_dir}/../cookbooks"] 
 ```
 
