@@ -107,9 +107,7 @@ Chef server gives you a persistent location to store your cookbooks and informat
 Now, from our workstation let's upload a cookbook to the Chef Server.
 
 ```
-mkdir ~/learn-chef/cookbooks
-cd ~/learn-chef/cookbooks
-git clone https://github.com/darumatic/learn_chef_apache2.git
+cd ~/chef_repo/cookbooks
 knife cookbook upload learn_chef_apache2
 ```
 
