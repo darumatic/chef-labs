@@ -42,9 +42,8 @@ curl -Ok https://cserver:443/knife_admin_key.tar.gz
 tar xvzf knife_admin_key.tar.gz 
 ```
 
+Your /root/learn-chef/.chef/knife.rb should look like this:
 ```
-#your knife.rb should look like this:
-root@44ad2386dc74:~/learn-chef/.chef# cat ~/learn-chef/.chef/knife.rb 
 current_dir = File.dirname(__FILE__) 
 log_level                 :info 
 log_location              STDOUT 
@@ -53,7 +52,7 @@ node_name                 "admin"
 client_key                "#{current_dir}/admin.pem" 
 validation_client_name   "my_org-validator" 
 validation_key           '#{current_dir}/my_org-validator.pem' 
-chef_server_url           "https://localhost/organizations/my_org" 
+chef_server_url           "https://cserver/organizations/my_org" 
 cookbook_path             ["#{current_dir}/../cookbooks"] 
 ```
 
