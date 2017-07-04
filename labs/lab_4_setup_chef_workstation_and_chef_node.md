@@ -101,3 +101,26 @@ At this point, you have two of the three parts of a typical Chef setup. Your wor
 
 Chef server gives you a persistent location to store your cookbooks and information about your nodes. The knife command enables you to communicate with the Chef server.
 
+
+## Upload a cookbook to Chef server 
+
+Now, from our workstation let's upload a cookbook to the Chef Server.
+
+```
+mkdir ~/learn-chef/cookbooks
+cd ~/learn-chef/cookbooks
+git clone https://github.com/darumatic/learn_chef_apache2.git
+knife cookbook upload learn_chef_apache2
+```
+
+Just in case, we can execute the knife cookbook list command to verify the cookbook is actually uploaded.
+
+```
+knife cookbook list 
+```
+
+It should show the following output:
+
+```
+learn_chef_apache2   0.1.0 
+```
