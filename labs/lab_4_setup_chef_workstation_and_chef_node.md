@@ -6,19 +6,39 @@ You need to have the Chef Server from Lab 3 working and the Docker image from la
 
 ---
 
+From the host, you need to get the ip of the Chef Server machine. In order to do it run the following command:
+```
+sudo docker inspect cserver |grep IPAdd
+```
+Take note of the ip address, you will use it later. 
+
+
 Run your Chef Workstation
 
 ```
 sudo docker run -ti --name chef_wk2 -h chef_wk chef_wk:2 bash 
 ```
 
+Now modify the /etc/hosts file and add the Chef Server ip. This will enable to use the name of the host instead of the ip in the following commands. Assuming the ip is 172.17.0.2, the line you need to add looks like this:
 
+```
+172.17.0.2 cserver
+```
+
+You can verify the host is working by running this command:
+```
+ping cserver
+```
+
+##Installing *knife* credentials
+
+Now that we have connectivity from the chef workstation to the chef server, we will install the *knife* credentials:
 
 ```
 cd
 mkdir -p learn-chef/.chef
 cd learn-chef/.chef
-curl -Ok https://localhost:443/knife_admin_key.tar.gz  
+curl -Ok https://cserver:443/knife_admin_key.tar.gz  
 tar xvzf knife_admin_key.tar.gz 
 ```
 
