@@ -96,13 +96,10 @@ In order to close and save your container, type Ctrl+D and then type in your hos
 sudo docker commit chef_wk1 chef_wk:2 
 
 
-## Closing and saving your container
+## Next steps
 
-In order to close and save your container, type Ctrl+D and then type in your host:
+Leave this container running for now. You will use it in another lab. If you need to restart it, you can always run: ```chef-server-ctl start```
 
-```
-sudo docker commit cserver cserver:1 
-```
 
 
 
