@@ -136,3 +136,14 @@ Your output should be:
 ```
 
 From your host machine you can go to http://VM_IP:8080 to get the Apache web page.
+
+
+## Closing and saving your container
+
+In order to close and save your container, type Ctrl+D and then type in your host:
+
+```
+docker commit chef_wk chef_wk:1 
+```
+
+
