@@ -2,20 +2,26 @@
 # Create Chef Server
 
 ```
-sudo docker run --privileged -ti -p 443:443 -p 8000:8000 -p 80:8080 --name server ubuntu:14.04 bash 	
+sudo docker run --privileged -ti -p 443:443 -p 8000:8000 -p 80:8080 -h cserver --name cserver ubuntu:14.04 bash 	
 ```
 
+Once your container starts, please run these commands:
 
 ```
-#inside the container
+#update the system 
 apt-get update -y 
-apt-get install -y wget vim curl git ntp
+#install some packages
+apt-get install -y wget vim curl git ntp nano tree
+#download chef server
 wget --no-check-certificate --content-disposition "http://www.opscode.com/chef/download-server?p=ubuntu&pv=14.04&m=x86_64&v=12&prerelease=false&nightlies=false" 
 ```
 
+Once we have our system ready, we will insall Chef Server
+
 ```
-#to install chef-server
+#we need to increase the shared memory segment to get Chef Server working
 sysctl -w kernel.shmmax=17179869184
+#now we install the Chef Server package
 dpkg -i chef-server-core*.deb 
 /opt/opscode/embedded/bin/runsvdir-start &
 echo "nginx['enable_non_ssl']=false" > /etc/opscode/chef-server.rb
