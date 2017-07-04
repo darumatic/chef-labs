@@ -9,12 +9,20 @@ KEY POINTS:
 
 ## Setup your Docker environment and install Chef-DK
 
+We will start by creating a Docker 'light virtual machine' running in our host. This approach enables us to not modify the host environment and to experiment as much as we want with our Chef configuration without making any external modification. At any point we can just start creating a new Docker container.
+
+This command starts a Docker container named *chef_wk* and based on Ubuntu 14.04. It will also export the http port so we can access the Apache web server from the host.
+
 ```　
 #create env 
 docker run -ti -p 8080:80 --name chef_wk ubuntu:14.04 bash 
+```
+
+
 
 Once inside the container, please run:
 
+```
 #install chef dk 
 apt-get update 
 apt-get -y install curl vim nano
