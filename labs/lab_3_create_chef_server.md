@@ -5,6 +5,7 @@
 sudo docker run --privileged -ti -p 443:443 -p 8000:8000 -p 80:8080 --name server ubuntu:14.04 bash 	
 ```
 
+
 ```
 #inside the container
 apt-get update -y 
@@ -74,3 +75,11 @@ touch /root/chef_configured
 
 - When you create your user account, note your username, password, and location of your RSA private key.
 - When you create your organization, note the name of the organization you choose.
+
+
+# Troubleshooting:
+In case the apt-get update or other networking related command doesn't work due to not connectivity you can try:
+
+1. Exit the container
+2. ```sudo service docker restart```
+3. Start the container again, typically ```sudo docker start -i container_name   ```
