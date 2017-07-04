@@ -79,6 +79,13 @@ chef-server-ctl restart nginx
 chef-server-ctl status 
 ```
 
+## Noteworthy
+
+Just for future reference:
+
+* When you create your user account, note your username, password, and location of your RSA private key.
+* When you create your organization, note the name of the organization you choose.
+
 
 # Troubleshooting:
 
