@@ -116,3 +116,12 @@ You should get the template's content. Additionally you can verify you have the 
 What is the runlist argument?
  
 Previously, you ran chef-client to run a single recipe from the command line. A run-list specifies each of the individual recipes from your cookbook that you want to apply. In the command abobe you applied just one recipe, but the run-list can contain multiple recipes from multiple cookbooks. 
+
+## Closing and saving your container
+
+In order to close and save your container, type Ctrl+D and then type in your host:
+
+```
+sudo docker commit chef_wk1 chef_wk:2 
+```
+
