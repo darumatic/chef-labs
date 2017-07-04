@@ -16,19 +16,21 @@ apt-get install -y wget vim curl git ntp nano tree
 wget --no-check-certificate --content-disposition "http://www.opscode.com/chef/download-server?p=ubuntu&pv=14.04&m=x86_64&v=12&prerelease=false&nightlies=false" 
 ```
 
-Once we have our system ready, we will insall Chef Server
+Once we have our system ready, we need to install Chef Server
 
 ```
 #we need to increase the shared memory segment to get Chef Server working
 sysctl -w kernel.shmmax=17179869184
 #now we install the Chef Server package
 dpkg -i chef-server-core*.deb 
+#after we need to ammend some configurations for the Nginx server.
 /opt/opscode/embedded/bin/runsvdir-start &
 echo "nginx['enable_non_ssl']=false" > /etc/opscode/chef-server.rb
 echo "nginx['ssl_port']=443" >> /etc/opscode/chef-server.rb
 echo "nginx['server_name']=\"chef-server\"" >> /etc/opscode/chef-server.rb
 ```
 
+The command below with set-up our Chef Server using the Chef engine. This will take a few minutes.
 ```
 #to start all the services
 chef-server-ctl reconfigure
