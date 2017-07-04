@@ -62,27 +62,40 @@ cookbook_path             ["#{current_dir}/../cookbooks"]
 knife ssl fetch 
 ```
 
-  WARNING: Certificates from 44ad2386dc74 will be fetched and placed in your trusted_cert 
-  directory (/root/learn-chef/.chef/trusted_certs). 
+This is the expected output:
+```
+WARNING: Certificates from 44ad2386dc74 will be fetched and placed in your trusted_cert 
+directory (/root/learn-chef/.chef/trusted_certs). 
 
-  Knife has no means to verify these are the correct certificates. You should 
-  verify the authenticity of these certificates after downloading. 
+Knife has no means to verify these are the correct certificates. You should 
+verify the authenticity of these certificates after downloading. 
 
-  Adding certificate for chef-server in /root/learn-chef/.chef/trusted_certs/chef-server.crt 
+Adding certificate for chef-server in /root/learn-chef/.chef/trusted_certs/chef-server.crt 
+```
 
+Then to verify ssl connectivity:
 
+```
+knife ssl check 
+```
 
-root@44ad2386dc74:~/learn-chef/.chef# knife ssl check 
+Should return:
 
-  Connecting to host chef-server:443 
-  Successfully verified certificates from `chef-server' 
+```
+Connecting to host chef-server:443 
+Successfully verified certificates from `chef-server' 
+```
+
+Finally to verify we can connect to the Chef Server:
 
 ```
 root@44ad2386dc74:~/learn-chef/.chef# knife user list 
 ```
-  admin 
+
+Should return: ```admin``` 
 
 
 At this point, you have two of the three parts of a typical Chef setup. Your workstation is set up and you have access to the Chef server.
+
 Chef server gives you a persistent location to store your cookbooks and information about your nodes. The knife command enables you to communicate with the Chef server.
 
