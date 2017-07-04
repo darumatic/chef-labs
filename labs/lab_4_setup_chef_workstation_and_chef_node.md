@@ -16,7 +16,7 @@ sudo docker run -ti --name chef_wk2 -h chef_wk chef_wk:2 bash
 
 ```
 cd
-mkdir learn-chef/.chef
+mkdir -p learn-chef/.chef
 cd learn-chef/.chef
 curl -Ok https://localhost:443/knife_admin_key.tar.gz  
 tar xvzf knife_admin_key.tar.gz 
