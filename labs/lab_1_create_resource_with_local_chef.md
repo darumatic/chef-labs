@@ -58,14 +58,14 @@ Let's run again the same command:
 chef-client  --local-mode hello.rb 
 ```
 
-```
+
 Why nothing changed?
 
-Chef looks at the current configuration state and applies the action only if the current state doesn't match the desired state. Here, Chef doesn't create or modify /tmp/motd because it already exists and its contents didn't change. We call this approach *test and repair*. 
+Chef looks at the current configuration state and applies the action only if the current state doesn't match the desired state. Here, Chef doesn't create or modify /tmp/motd because it already exists and its contents didn't change. We call this approach **test and repair**. 
 
 ---
 
-## Extra ##
+## Extra 
 
 1. Modify the content of /tmp/motd
 2. Run the chef-cliet command as above. What happened with the content of /tmp/motd? Why? 
