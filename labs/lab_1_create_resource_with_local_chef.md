@@ -46,6 +46,6 @@ The command above instructed chef to create a message of the day file in the /tm
 
 ```
 root@df67a8dfd2d7:~/chef-repo# cat /tmp/motd 
-hello worldroot 
+hello world
 ```
 
