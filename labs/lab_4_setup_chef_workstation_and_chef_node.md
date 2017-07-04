@@ -6,6 +6,8 @@ You need to have the Chef Server from Lab 3 working and the Docker image from la
 
 ---
 
+## Workstation setup
+
 From the host, you need to get the ip of the Chef Server machine. In order to do it run the following command:
 ```
 sudo docker inspect chef-server |grep IPAdd
