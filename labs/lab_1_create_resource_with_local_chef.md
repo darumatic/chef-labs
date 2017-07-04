@@ -15,7 +15,7 @@ This command starts a Docker container named *chef_wk* and based on Ubuntu 14.04
 
 ```　
 #create env 
-docker run -ti -p 8080:80 --name chef_wk ubuntu:14.04 bash 
+sudo docker run -ti -p 8080:80 --name chef_wk ubuntu:14.04 bash 
 ```
 
 
@@ -143,7 +143,7 @@ From your host machine you can go to http://VM_IP:8080 to get the Apache web pag
 In order to close and save your container, type Ctrl+D and then type in your host:
 
 ```
-docker commit chef_wk chef_wk:1 
+sudo docker commit chef_wk chef_wk:1 
 ```
 
 
