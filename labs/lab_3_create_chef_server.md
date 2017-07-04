@@ -81,14 +81,12 @@ chef-server-ctl status
 You did it! You have Chef Server up and running.
 
 
-## Noteworthy
-
 Just for future reference:
 
 * When you create your user account, note your username, password, and location of your RSA private key.
 * When you create your organization, note the name of the organization you choose.
 
-Closing and saving your container
+## Closing and saving your container
 
 In order to close and save your container, type Ctrl+D and then type in your host:
 
