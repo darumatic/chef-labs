@@ -1,5 +1,5 @@
 
-# Create Chef Server
+# Lab 3 Create a Chef Server
 
 ```
 sudo docker run --privileged -ti -p 443:443 -p 8000:8000 -p 80:8080 -h cserver --name cserver ubuntu:14.04 bash 	
