@@ -79,6 +79,9 @@ chef-server-ctl restart nginx
 chef-server-ctl status 
 ```
 
+You did it! You have Chef Server up and running.
+
+
 ## Noteworthy
 
 Just for future reference:
