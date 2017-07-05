@@ -39,7 +39,7 @@ By selecting it in Putty, you will copy it automatically. We will paste it below
 Create a new node machine
 
 ```
-sudo docker run -ti --name chef-node -h chef-node ubuntu:14.04 bash 
+sudo docker run -ti -p 8082:80 --name chef-node -h chef-node ubuntu:14.04 bash 
 ```
 
 Let's start connecting the Chef Node with the Chef Server by IP. Please add the Chef Server ip in the /etc/hosts file. In our case is:
@@ -102,27 +102,42 @@ You also need ssh working from the chef workstation to the chef node.
 
 
 ## Troubleshooting:
-If the operation times out or fails, here are some things to try. 
 
-    Ensure that you run knife commands from your learn-chef directory or one of its sub-directories. 
-    Ensure you have a learn-chef/.chef directory and that it contains a knife.rb file and your RSA private key file. 
-    Ensure that your node's IP address is accessible from your network. 
-    Ensure the user name you provide has root or sudo access on the node. 
-    Ensure your node provides network access on these ports: 
+If the command above failed, please go back to the instructions from the top of this page in case you missed something. Additionally you can try these:
+
+* Ensure that you run knife commands from /root/chef_repo/cookbooks. 
+* Ensure you have a /root/chef_repo/.chef directory and that it contains a knife.rb file and your RSA private key file. 
+* Ensure that your node's IP address is accessible from the Chef Workstation. 
+* Ensure the user name you provide has root or sudo access on the node. 
+* Ensure your node provides network access on these ports: 
         22 (SSH) 
         80 (HTTP) 
         443 (HTTPS)
 
+## Setup the Chef Node
 
+To verify that your node was associated with your Chef server run the knife node list command:
 
-What happens during knife bootstrap?
-https://learn.chef.io/modules/beyond-the-basics/what-happens-during-knife-bootstrap#/
+```
+knife node-list 
+```
 
-First, your node was associated with your Chef server. To verify this, run the knife node list command.
-# knife node-list 
+It should return:
+```
 node1-ubuntu 
+```
+If it did, congratulations! It was hard work but you did it ;)
 
-# knife node show node1-ubuntu 
+
+Other commands you can try:
+
+```
+knife node show node1-ubuntu
+```
+
+This should output something like:
+
+```
 Node Name:   node1-ubuntu 
 Environment: _default 
 FQDN:        ae859505678f 
@@ -132,31 +147,33 @@ Roles:
 Recipes:     learn_chef_apache2, learn_chef_apache2::default 
 Platform:    ubuntu 14.04 
 Tags:
+```
 
-From the node:
-root@ae859505678f:~# curl localhost 
+To test the web server we just setup in the node:
+
+```
+curl 172.17.0.4 
+```
+
+It should output:
+```
 <html> 
-  <body> 
-    <h1>hello world</h1> 
-  </body> 
+<body> 
+Hello Chef from a Template inside a Cookbook
+<hr>
+Node: chef_node
+</body> 
 </html> 
+```
+You can query the same page in your host browser going to http://vm_ip:8082
 
 
-Which of the following most completely describes what happens during the bootstrap process? 
 
-    The Chef client is installed on the node. 
-    The node checks in with the Chef server for the first time. 
-X    The Chef client is installed on the node and the node then checks in with the Chef server. 
+## About Knife bootstrap
 
-Which argument to the knife bootstrap command specifies your node's run-list? 
+* You ran knife bootstrap to associate your node with the Chef server and do an initial check-in. Bootstrapping is a one-time process.
+* The knife ssh command enables you to update your node's configuration when your cookbook changes.
 
-X    --run-list 
-    --run_list 
-    --cookbooks 
-  
-
-Update your node's configuration 
-
-- You ran knife bootstrap to associate your node with the Chef server and do an initial check-in. Bootstrapping is a one-time process.
-- The knife ssh command enables you to update your node's configuration when your cookbook changes.
-
+Optional video: 
+What happens during knife bootstrap?
+https://learn.chef.io/modules/beyond-the-basics/what-happens-during-knife-bootstrap#/
