@@ -21,9 +21,11 @@ sudo docker run -ti --name chef_node -h chef_node ubuntu:14.04 bash
 Once inside the container, please run:
 
 ```
-#install chef dk 
 apt-get update 
+apt-get -y install openssh-server vim nano
+cat /etc/hosts
 ```
+Please notice the ip output with the last command. In our case was *172.17.0.4* We will use it below but replace it accordingly. 
 
 
 
