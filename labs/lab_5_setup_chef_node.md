@@ -10,6 +10,21 @@ KEY POINT: Any computer that's managed by Chef is called a node.
 
 For this lab I recommend opening a new terminal session dividing your screen by four, one corner for this instructions, one for the Chef Server, one for the workstation and finally one for the Chef Node that we will setup below.
 
+## Setup ssh keys in your Chef Workstation 
+We need to setup the authentication method from the Chef Workstation to the Chef Node. To do so, please run this command, hitting Enter to get the default options.
+
+```
+ssh-keygen -N ''
+cat ~/.ssh/id_rsa.pub
+```
+The output of the last command is the ssh public key of the workstation. It will look something like:
+
+```
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQO9eteye/KDwUjUPerYt3ik8DcM9lWnDBSDQlijGF0ElFgqU1uc33paF7KZvyOKF6ex5fFChsy00Z0tJNZbEQ8uV7Z9FIcCmgsr3KerkmIfAhJi0qiRPndU4o0myFnOaC274bV9CXIU3Thj4EG6Tm+IjWSTYtc1ep4yQc8upUgPypLfySe2WCnK1H5XRcsqf2DJQmf4L+zEVhhNTkoM1l1QjBR3gxo0fywtXg5rtPuBmk9SHpui7ureGAldmJpoT1GzdovxOmbkOg6Ro6E1/dN333jLwBM0nAn1FQMRz2QjPxdQ+MVN8uiKq4PYWxFxlriqb6weN+T20LyLM9XAh1 adrian@adrian-ubuntu-XPS
+```
+By selecting it in Putty, you will copy it automatically. We will paste it below shortly.
+
+
 ## Starting your Chef Node
 
 Create a new node machine
@@ -23,10 +38,32 @@ Once inside the container, please run:
 ```
 apt-get update 
 apt-get -y install openssh-server vim nano
+service ssh restart
+mkdir /root/.ssh
+touch /root/.ssh/authorized_keys
+```
+
+```
+ssh-keygen -N ''
+```
+
+Now we need to add the ssh public key from the workstation to /root/.ssh/authorized_keys. Please open the file with *vim* or *nano* and add the Chef Workstation public ssh key.
+
+Finally, we need to take note of the Chef Node IP. Please run the following command:
+```
 cat /etc/hosts
 ```
-Please notice the ip output with the last command. In our case was *172.17.0.4* We will use it below but replace it accordingly. 
+In our case the ip was *172.17.0.4* We will use this ip below but please replace in the commands below accordingly. 
 
+## Verifying connectivity
+
+Now go to the Chef Workstation and run the command below. Remember to change the Chef Node ip by your own:
+
+```
+ssh 172.17.0.4 "ls /root/.ssh"
+```
+
+If you didn't get any error but a list of files, you are good to go!
 
 
 ## Bootstraping your node 
@@ -38,7 +75,10 @@ In this part you'll bootstrap your node and execute the learn_chef_apache2 cookb
 
 Go to your Chef Workstation session and run:
 
-~/learn-chef# knife bootstrap 172.17.0.2 --ssh-user root --sudo --identity-file ~/.ssh/id_rsa --node-name node1-ubuntu --run-list 'recipe[learn_chef_apache2]' 
+```
+cd /root/chef_repo/cookbooks
+knife bootstrap 172.17.0.2 --ssh-user root --sudo --identity-file ~/.ssh/id_rsa --node-name node1-ubuntu --run-list 'recipe[learn_chef_apache2]' 
+```
 
 For this to work, you need the chef_server to be accesible by name from both the chef_workstation and the node.
 You also need ssh working from the chef workstation to the chef node.
