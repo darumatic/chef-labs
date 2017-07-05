@@ -25,7 +25,7 @@ Once inside the container, please run:
 ```
 #install chef dk 
 apt-get update 
-apt-get -y install curl vim nano tree git
+apt-get -y install curl vim nano tree git openssh-client
 curl https://omnitruck.chef.io/install.sh | bash -s -- -P chefdk -c stable -v 0.18.30 
 ```
 
