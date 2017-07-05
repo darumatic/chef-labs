@@ -8,13 +8,34 @@ KEY POINT: Any computer that's managed by Chef is called a node.
 
 ---
 
-## Bootstrap your node 
+For this lab I recommend opening a new terminal session dividing your screen by four, one corner for this instructions, one for the Chef Server, one for the workstation and finally one for the Chef Node that we will setup below.
 
-any computer that's managed by a Chef server is called a node, and that chef-client is the command that applies the policy defined by your cookbooks to a node. We call the process that installs chef-client on a node and the initial check-in to the Chef server bootstrapping the node.
+## Starting your Chef Node
+
+Create a new node machine
+
+```
+sudo docker run -ti -p 8080:80 --name chef_node -h chef_node ubuntu:14.04 bash 
+```
+
+Once inside the container, please run:
+
+```
+#install chef dk 
+apt-get update 
+```
+
+
+
+## Bootstraping your node 
+
+Any computer that's managed by a Chef server is called a node, and that chef-client is the command that applies the policy defined by your cookbooks to a node. We call the process that installs chef-client on a node and the initial check-in to the Chef server bootstrapping the node.
+
 In this part you'll bootstrap your node and execute the learn_chef_apache2 cookbook on it.
-knife bootstrap is the command you use to bootstrap a node. As part of the knife bootstrap command, you specify arguments depending on how you would normally connect to your node over SSH.
+*knife bootstrap* is the command you use to bootstrap a node. As part of the knife bootstrap command, you specify arguments depending on how you would normally connect to your node over SSH.
 
-From the Chef Workstation:
+Go to your Chef Workstation session and run:
+
 ~/learn-chef# knife bootstrap 172.17.0.2 --ssh-user root --sudo --identity-file ~/.ssh/id_rsa --node-name node1-ubuntu --run-list 'recipe[learn_chef_apache2]' 
 
 For this to work, you need the chef_server to be accesible by name from both the chef_workstation and the node.
