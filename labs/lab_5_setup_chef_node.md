@@ -72,11 +72,11 @@ Any computer that's managed by a Chef server is called a node, and that chef-cli
 In this part you'll bootstrap your node and execute the learn_chef_apache2 cookbook on it.
 *knife bootstrap* is the command you use to bootstrap a node. As part of the knife bootstrap command, you specify arguments depending on how you would normally connect to your node over SSH.
 
-Go to your Chef Workstation session and run:
+Go to your Chef Workstation session and run the command above. Please remeber to replace the 172.17.0.4 ip with the one from your own Chef Node:
 
 ```
 cd /root/chef_repo/cookbooks
-knife bootstrap 172.17.0.2 --ssh-user root --sudo --identity-file ~/.ssh/id_rsa --node-name node1-ubuntu --run-list 'recipe[learn_chef_apache2]' 
+knife bootstrap 172.17.0.4 --ssh-user root --sudo --identity-file ~/.ssh/id_rsa --node-name node1-ubuntu --run-list 'recipe[learn_chef_apache2]' 
 ```
 
 For this to work, you need the chef_server to be accesible by name from both the chef_workstation and the node.
@@ -105,7 +105,7 @@ node1-ubuntu
 Node Name:   node1-ubuntu 
 Environment: _default 
 FQDN:        ae859505678f 
-IP:          172.17.0.2 
+IP:          172.17.0.4
 Run List:    recipe[learn_chef_apache2] 
 Roles:       
 Recipes:     learn_chef_apache2, learn_chef_apache2::default 
