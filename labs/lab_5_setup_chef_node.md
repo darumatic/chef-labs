@@ -10,6 +10,16 @@ KEY POINT: Any computer that's managed by Chef is called a node.
 
 For this lab I recommend opening a new terminal session dividing your screen by four, one corner for this instructions, one for the Chef Server, one for the workstation and finally one for the Chef Node that we will setup below.
 
+## Get the Chef Server IP
+You will need the Chef Server IP to setup connectivity between the Chef Node and Server. If you don't remember from the previous lab, you can get it by running the following command from either the Chef Workstation or the Chef Server:
+
+```
+cat /etc/hosts
+```
+
+Please take note of the ip in the line chef-server.
+
+
 ## Setup ssh keys in your Chef Workstation 
 We need to setup the authentication method from the Chef Workstation to the Chef Node. To do so, please run this command, hitting Enter to get the default options.
 
@@ -29,10 +39,22 @@ By selecting it in Putty, you will copy it automatically. We will paste it below
 Create a new node machine
 
 ```
-sudo docker run -ti --name chef_node -h chef_node ubuntu:14.04 bash 
+sudo docker run -ti --name chef-node -h chef-node ubuntu:14.04 bash 
 ```
 
-Once inside the container, please run:
+Let's start connecting the Chef Node with the Chef Server by IP. Please add the Chef Server ip in the /etc/hosts file. In our case is:
+
+```
+172.17.0.2 chef-server
+```
+You can verify it's working by running:
+
+```
+ping chef-server
+```
+
+
+Once you sorted that out, you need to install a few packages:
 
 ```
 apt-get update 
@@ -42,17 +64,13 @@ mkdir /root/.ssh
 touch /root/.ssh/authorized_keys
 ```
 
-```
-ssh-keygen -N ''
-```
-
 Now we need to add the ssh public key from the workstation to /root/.ssh/authorized_keys. Please open the file with *vim* or *nano* and add the Chef Workstation public ssh key.
 
 Finally, we need to take note of the Chef Node IP. Please run the following command:
 ```
 cat /etc/hosts
 ```
-In our case the ip was *172.17.0.4* We will use this ip below but please replace in the commands below accordingly. 
+In our case the ip was *172.17.0.4* We will use this ip below but please replace it accordingly. 
 
 ## Verifying connectivity
 
@@ -79,10 +97,11 @@ cd /root/chef_repo/cookbooks
 knife bootstrap 172.17.0.4 --ssh-user root --sudo --identity-file ~/.ssh/id_rsa --node-name node1-ubuntu --run-list 'recipe[learn_chef_apache2]' 
 ```
 
-For this to work, you need the chef_server to be accesible by name from both the chef_workstation and the node.
+For this to work, you need the Chef Server to be accesible by name from both the chef_workstation and the node.
 You also need ssh working from the chef workstation to the chef node.
 
-Troubleshooting:
+
+## Troubleshooting:
 If the operation times out or fails, here are some things to try. 
 
     Ensure that you run knife commands from your learn-chef directory or one of its sub-directories. 
@@ -93,6 +112,8 @@ If the operation times out or fails, here are some things to try.
         22 (SSH) 
         80 (HTTP) 
         443 (HTTPS)
+
+
 
 What happens during knife bootstrap?
 https://learn.chef.io/modules/beyond-the-basics/what-happens-during-knife-bootstrap#/
