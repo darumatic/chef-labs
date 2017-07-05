@@ -15,7 +15,7 @@ For this lab I recommend opening a new terminal session dividing your screen by 
 Create a new node machine
 
 ```
-sudo docker run -ti -p 8080:80 --name chef_node -h chef_node ubuntu:14.04 bash 
+sudo docker run -ti --name chef_node -h chef_node ubuntu:14.04 bash 
 ```
 
 Once inside the container, please run:
