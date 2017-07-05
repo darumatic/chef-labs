@@ -19,9 +19,8 @@ cat ~/.ssh/id_rsa.pub
 ```
 The output of the last command is the ssh public key of the workstation. It will look something like:
 
-```
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQO9eteye/KDwUjUPerYt3ik8DcM9lWnDBSDQlijGF0ElFgqU1uc33paF7KZvyOKF6ex5fFChsy00Z0tJNZbEQ8uV7Z9FIcCmgsr3KerkmIfAhJi0qiRPndU4o0myFnOaC274bV9CXIU3Thj4EG6Tm+IjWSTYtc1ep4yQc8upUgPypLfySe2WCnK1H5XRcsqf2DJQmf4L+zEVhhNTkoM1l1QjBR3gxo0fywtXg5rtPuBmk9SHpui7ureGAldmJpoT1GzdovxOmbkOg6Ro6E1/dN333jLwBM0nAn1FQMRz2QjPxdQ+MVN8uiKq4PYWxFxlriqb6weN+T20LyLM9XAh1 adrian@adrian-ubuntu-XPS
-```
+    ssh-rsa                 AAAAB3NzaC1yc2EAAAADAQABAAABAQDQO9eteye/KDwUjUPerYt3ik8DcM9lWnDBSDQlijGF0ElFgqU1uc33paF7KZvyOKF6ex5fFChsy00Z0tJNZbEQ8uV7Z9FIcCmgsr3KerkmIfAhJi0qiRPndU4o0myFnOaC274bV9CXIU3Thj4EG6Tm+IjWSTYtc1ep4yQc8upUgPypLfySe2WCnK1H5XRcsqf2DJQmf4L+zEVhhNTkoM1l1QjBR3gxo0fywtXg5rtPuBmk9SHpui7ureGAldmJpoT1GzdovxOmbkOg6Ro6E1/dN333jLwBM0nAn1FQMRz2QjPxdQ+MVN8uiKq4PYWxFxlriqb6weN+T20LyLM9XAh1 adrian@adrian- ubuntu-XPS
+
 By selecting it in Putty, you will copy it automatically. We will paste it below shortly.
 
 
