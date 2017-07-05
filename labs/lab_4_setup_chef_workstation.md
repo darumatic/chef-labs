@@ -1,4 +1,4 @@
-# Lab 4 Setup Chef Workstation 
+# Lab 4 Setup a Chef Workstation 
 
 Pre-requisites:
 
