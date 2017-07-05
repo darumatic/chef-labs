@@ -38,8 +38,8 @@ Now that we have connectivity from the chef workstation to the chef server, we w
 
 ```
 cd
-mkdir -p learn-chef/.chef
-cd learn-chef/.chef
+mkdir -p /root/chef_repo/.chef
+cd /root/chef_repo/.chef
 curl -Ok https://chef-server:443/knife_admin_key.tar.gz  
 tar xvzf knife_admin_key.tar.gz 
 ```
