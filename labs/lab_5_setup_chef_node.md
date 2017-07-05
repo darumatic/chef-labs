@@ -169,7 +169,7 @@ You can query the same page in your host browser going to http://vm_ip:8082
 
 
 
-## About Knife bootstrap
+## About Knife Bootstrap
 
 * You ran knife bootstrap to associate your node with the Chef server and do an initial check-in. Bootstrapping is a one-time process.
 * The knife ssh command enables you to update your node's configuration when your cookbook changes.
