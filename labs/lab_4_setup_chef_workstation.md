@@ -32,7 +32,7 @@ You can verify the host is working by running this command:
 ping chef-server
 ```
 
-##Installing *knife* credentials
+## Installing *knife* credentials
 
 Now that we have connectivity from the chef workstation to the chef server, we will install the *knife* credentials:
 
