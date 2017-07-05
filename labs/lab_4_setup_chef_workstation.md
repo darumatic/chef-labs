@@ -1,4 +1,4 @@
-# Lab 4 Setup Chef Workstation and Chef node
+# Lab 4 Setup Chef Workstation 
 
 Pre-requisites:
 
