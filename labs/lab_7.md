@@ -1,6 +1,6 @@
 # Lab 7
 
-PQ: Please complete the previous labs before trying this one.
+Pre-requisites: Please complete the previous labs before trying this one.
 
 ---
 
