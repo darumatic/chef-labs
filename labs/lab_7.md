@@ -12,16 +12,16 @@ There are several ways to obtain cookbooks from Chef Supermarket. One way is to 
 Berkshelf is a tool that helps you resolve cookbook dependencies. Berkshelf can retrieve the cookbooks that your cookbook depends on and can upload your cookbooks to your Chef server. Berkshelf comes with the Chef DK
 
 
-## Install motd cookbook
+## Install htop cookbook
 
 First, you need to setup Bershelf to specify which cookbooks you want. In /root/chef-repo directory create ```Berksfile``` with this content:
 
 ```
 source 'https://supermarket.chef.io'
-cookbook 'motd'
+cookbook 'htop'
 ```
 
-Now run ```berks install``` to download the *motd* cookbook and its dependencies.
+Now run ```berks install``` to download the *htop* cookbook and its dependencies.
 
 After downloading the new cookbook you need to upload it to the server. In this case you can't use *knife* since you want to upload all the dependencies in one go. 
 
@@ -51,7 +51,7 @@ The create the roles file in /root/chef-repo/roles/web.json
    "override_attributes": {
    },
    "chef_type": "role",
-   "run_list": ["recipe[motd::default]",
+   "run_list": ["recipe[htop::default]",
                 "recipe[learn_chef_apache2::default]"
    ],
    "env_run_lists": {
@@ -74,10 +74,6 @@ Finally, we link our node with the new role:
 knife node run_list set node1-ubuntu "role[web]"
 ```
 
-## Using the motd cookbook
-
-In order to use the
-
 
 ## Executing the role
 
@@ -93,23 +89,18 @@ node1-ubuntu:
   run_list: role[web]
 ```
 
-Finally, we use the knife ssh command to run our node.
+Finally, we use the knife ssh command to run the chef-client in our node.
+
 knife ssh 'role:web' 'sudo chef-client' --ssh-user root --identity-file ~/.ssh/id_rsa --attribute ipaddress
 
 Please notice that we don't specify the ip of the node. Just the role we want to apply.
 
-To verify the update motd, we can ssh into the node (replace it with your node's ip.
+To verify the *htop* cookbook, we can run the htop command from the Chef Node.
 
 ```
-ssh 172.17.0.3
+htop
 ```
 
-We should see something like:
-
-```
-  This is ae859505678f, a  _default server
-Last login: Thu Jul  6 20:16:24 2017 from localhost
-```
 
 
 
