@@ -38,13 +38,13 @@ Now that we have connectivity from the chef workstation to the chef server, we w
 
 ```
 cd
-mkdir -p /root/chef_repo/.chef
+mkdir -p /root/chef-repo/.chef
 cd /root/chef_repo/.chef
 curl -Ok https://chef-server:443/knife_admin_key.tar.gz  
 tar xvzf knife_admin_key.tar.gz 
 ```
 
-Your /root/learn-chef/.chef/knife.rb should look like this:
+Your /root/chef-repo/.chef/knife.rb should look like this:
 ```
 current_dir = File.dirname(__FILE__) 
 log_level                 :info 
@@ -58,7 +58,7 @@ chef_server_url           "https://chef-server/organizations/my_org"
 cookbook_path             ["#{current_dir}/../cookbooks"] 
 ```
 
-#When the config.rb file is ready, you will need to get the SSL certificate file from the container to access Chef Server:
+#When the knife.rb file is ready, you will need to get the SSL certificate file from the container to access Chef Server:
 
 ```
 knife ssl fetch 
